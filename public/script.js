@@ -23,6 +23,8 @@ async function handleSubmit() {
 
   submitBtn.disabled = true;
   spinner.className = 'spinner visible';
+  localStorage.setItem('date', date);
+  localStorage.setItem('ticketNumber', ticketNumber);
 
   try {
     const res = await fetch('/api/check', {
@@ -64,13 +66,15 @@ function renderResult(data) {
       '<span style="color:#999">Свободных мест не найдено</span>';
   } else {
     let ids = '';
-    allPlaces.sort((a, b) => a - b).forEach((place) => {
-      // const badge = document.createElement('span');
-      // badge.className = 'place-badge';
-      // badge.textContent = place;
-      // placesList.appendChild(badge);
-      ids += `#Seat${place},`;
-    });
+    allPlaces
+      .sort((a, b) => a - b)
+      .forEach((place) => {
+        // const badge = document.createElement('span');
+        // badge.className = 'place-badge';
+        // badge.textContent = place;
+        // placesList.appendChild(badge);
+        ids += `#Seat${place}.st2,`;
+      });
 
     ids = ids.slice(0, -1);
 
@@ -78,7 +82,7 @@ function renderResult(data) {
     style.setAttribute('id', 'seatsStyle');
     style.textContent = `
           ${ids} {
-            fill: #81bfff;
+            fill: #81bfff !important;
             stroke: #5583de;
           }
         `;
@@ -99,8 +103,10 @@ function renderResult(data) {
     timeStyle: 'short',
     timeZone: 'UTC',
   });
-  const datetime = formatter.format(new Date(`${data.ticket.dateoper}T${data.ticket.timeoper}:00.000Z`));
-  
+  const datetime = formatter.format(
+    new Date(`${data.ticket.dateoper}T${data.ticket.timeoper}:00.000Z`),
+  );
+
   ticketData.innerHTML = `<table>
         <tr><td>Откуда:</td> <td>${data.ticket.stdep}</td></tr>
         <tr><td>Куда:</td> <td>${data.ticket.starr}</td></tr>
@@ -116,7 +122,31 @@ function showError(msg) {
   errorMsg.className = 'error-msg visible';
 }
 
+function clearDate() {
+  const dateInput = document.getElementById('date');
+  dateInput.value = null;
+  localStorage.removeItem('date');
+}
+
+function clearTicketNumber() {
+  const ticketInput = document.getElementById('ticketNumber');
+  ticketInput.value = null;
+  localStorage.removeItem('ticketNumber');
+}
+
 // Allow Enter key to submit
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') handleSubmit();
 });
+
+window.addEventListener('load', () => {
+  const date = localStorage.getItem('date');
+  const ticketNumber = localStorage.getItem('ticketNumber');
+  if(date && ticketNumber) {
+    const dateInput = document.getElementById('date');
+    dateInput.value = date;
+
+    const ticketInput = document.getElementById('ticketNumber');
+    ticketInput.value = ticketNumber;
+  }
+})

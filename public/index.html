@@ -14,11 +14,17 @@
       <div class="form-row">
         <div class="form-group">
           <label for="date">Дата поездки</label>
-          <input type="date" id="date" required>
+          <div class="input-wrapper">
+            <input type="date" id="date" required>
+            <button class="clear clear-date" onclick="clearDate()">✕</button>
+          </div>
         </div>
         <div class="form-group">
           <label for="ticketNumber">Номер билета</label>
-          <input type="text" id="ticketNumber" placeholder="74966230272031" required value="74966230272031">
+          <div class="input-wrapper">
+            <input type="text" id="ticketNumber" placeholder="74966230272031" required>
+            <button class="clear" onclick="clearTicketNumber()">✕</button>
+          </div>
         </div>
         <button id="submitBtn" onclick="handleSubmit()">
           Проверить
@@ -38,6 +44,16 @@
       <div class="result-section">
         <h2>Схема вагона</h2>
         <div class="svg-wrapper" id="svgWrapper"></div>
+        <div class="designations">
+          <div class="item">
+            <div class="icon free"></div>
+            <div class="text">Свободное</div>
+          </div>
+          <div class="item">
+            <div class="icon busy"></div>
+            <div class="text">Занятое место</div>
+          </div>
+        </div>
       </div>
 
       <div class="result-section">

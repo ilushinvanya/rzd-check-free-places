@@ -52,6 +52,7 @@ label {
 }
 
 input {
+    width: 100%;
     padding: 10px 12px;
     border: 1px solid #ccc;
     border-radius: 6px;
@@ -63,8 +64,27 @@ input {
 input:focus {
     border-color: #d00;
 }
+.input-wrapper {
+    position: relative;
+}
 
-button {
+.clear {
+    position: absolute;
+    background: #ff000000;
+    width: 23px;
+    height: 23px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 6px;
+    border: 0;
+    line-height: 0;
+    font-weight: bold;
+}
+.clear-date {
+    right: 34px;
+}
+
+button#submitBtn {
     padding: 10px 28px;
     background: #d00;
     color: #fff;
@@ -76,11 +96,11 @@ button {
     white-space: nowrap;
 }
 
-button:hover {
+button#submitBtn:hover {
     background: #b00;
 }
 
-button:disabled {
+button#submitBtn:disabled {
     background: #999;
     cursor: not-allowed;
 }
@@ -175,4 +195,33 @@ table {
 th, td {
     border: 1px solid #b7b7b7;
     padding: 8px 16px;
+}
+
+.designations {
+    display: flex;
+    margin-top: 20px;
+    gap: 18px;
+}
+.item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.icon {
+    width: 23px;
+    height: 23px;
+    border-radius: 4px;
+}
+.icon.free {
+    background: #81bfff;
+    border: 1px #5583de solid;
+}
+.icon.busy {
+    background: #c1c1c1;
+}
+.text {
+    font-size: 14px;
+}
+.st2 {
+    fill: #c1c1c1 !important;
 }
