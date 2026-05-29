@@ -20,6 +20,7 @@ h1 {
     font-size: 1.5rem;
     margin-bottom: 24px;
     color: #d00;
+    font-weight: normal;
 }
 
 .form-card {
