@@ -12,6 +12,15 @@
     <div>Сервис использует открытые данные официального сайта РЖД. Мы не связаны с ОАО "РЖД". Схемы вагонов предоставляются для удобства пассажиров, уже купивших билет.</div>
     <div class="form-card">
       <div class="form-row">
+
+        <div class="form-group">
+          <label for="ticketNumber">№ электронного билета или проездного документа</label>
+          <div class="input-wrapper">
+            <input type="text" id="ticketNumber" placeholder="14 символов" required>
+            <button class="clear" onclick="clearTicketNumber()">✕</button>
+          </div>
+        </div>
+
         <div class="form-group">
           <label for="date">Дата поездки</label>
           <div class="input-wrapper">
@@ -19,13 +28,7 @@
             <button class="clear clear-date" onclick="clearDate()">✕</button>
           </div>
         </div>
-        <div class="form-group">
-          <label for="ticketNumber">Номер билета</label>
-          <div class="input-wrapper">
-            <input type="text" id="ticketNumber" placeholder="74966230272031" required>
-            <button class="clear" onclick="clearTicketNumber()">✕</button>
-          </div>
-        </div>
+
         <button id="submitBtn" onclick="handleSubmit()">
           Проверить
           <span class="spinner" id="spinner"></span>
